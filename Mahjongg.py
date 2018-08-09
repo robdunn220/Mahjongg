@@ -1,5 +1,7 @@
 import random
 
+playerList = []
+
 class Tile:
     def __init__(self, suit, value):
         self.suit = suit
@@ -30,30 +32,38 @@ class Deck:
                     self.tiles.append(tile)
 
 class Player:
-    def __init__(self, num):
-        self.num = 'Player ' + str(num)
+    def __init__(self, name):
+        self.name = 'Player ' + str(name)
         self.hand = []
 
-    def showHand(self):
-        for i in range(0, len(self.hand)):
-            print(self.hand[i].suit + ' ' + str(self.hand[i].value))
-
+    def drawTile(self):
+        for t in range(0, len(deck.tiles)-1):
+            r = random.randint(0,(len(deck.tiles)-1))
+            self.hand.append(deck.tiles[r])
+            deck.tiles.remove(deck.tiles[r])
 
 deck = Deck()
 
-playerList = []
-
 def dealHands():
     for i in range(1, 5):
-        player = Player(i)
+        playerName = 'player' + str(i)
+        playerName = Player(i)
         for x in range(1,5):
             r = random.randint(0,(len(deck.tiles)-1))
-            player.hand.append(deck.tiles[r])
+            playerName.hand.append(deck.tiles[r])
             deck.tiles.remove(deck.tiles[r])
-        playerList.append(player)
+        playerList.append(playerName)
 
 dealHands()
 
+def turn(playerName):
+    pass
+
 for player in playerList:
-    for card in player.hand:
-        print(str(player.num) + ': ' + card.suit + str(card.value))
+    print(player.name)
+    for tile in player.hand:
+        print(tile.suit + ' ' + str(tile.value))
+
+# for player in playerList:
+#     for card in player.hand:
+#         print(str(player.name) + ': ' + card.suit + str(card.value))
