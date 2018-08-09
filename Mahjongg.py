@@ -31,7 +31,7 @@ class Deck:
 
 class Player:
     def __init__(self, num):
-        self.num = num
+        self.num = 'Player ' + str(num)
         self.hand = []
 
     def showHand(self):
@@ -45,7 +45,6 @@ playerList = []
 
 def dealHands():
     for i in range(1, 5):
-        player = 'player' + str(i)
         player = Player(i)
         for x in range(1,5):
             r = random.randint(0,(len(deck.tiles)-1))
